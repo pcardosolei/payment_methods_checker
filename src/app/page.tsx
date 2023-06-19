@@ -1,9 +1,9 @@
 // @ts-nocheck
 "use client";
-
+import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 
-const ADDI_AUTHENTICATION_TEST_URL = "https://api.staging.addi.com";
+const ADDI_AUTHENTICATION_TEST_URL = "https://auth.addi-staging.com";
 
 const ADDI_API_TEST_URL = "https://api.addi-staging.com";
 
@@ -24,24 +24,8 @@ export default function Home() {
   const [price, setPrice] = useState<number>(0);
 
   const getAddiAuthorization = async () => {
-    const body = {
-      grant_type: "client_credentials",
-      client_id: process.env.NEXT_PUBLIC_CLIENT_ID || "",
-      client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET || "",
-    };
-
-    fetch(`${ADDI_AUTHENTICATION_TEST_URL}/oauth/token`, {
-      body: JSON.stringify(body),
-      method: "POST",
-    })
-      .then(async (response) => {
-        let info = await response.json();
-        debugger;
-        setJwt(info);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const response = await axios.get("/api/addi_token");
+    debugger;
   };
 
   const createApplication = useCallback(() => {

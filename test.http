@@ -1,0 +1,12 @@
+GET http://localhost:3000/api/addi_token HTTP/1.1
+
+POST https://auth.addi-staging.com/oauth/token  HTTP/1.1
+Content-Type: application/json
+
+{
+    "audience": "https://api.staging.addi.com",
+    "grant_type": "client_credentials",
+    "client_id": "Y7vSr58bUUMC5R3Ua3kDOINkV17fnqup",
+    "client_secret": "-qK9fWnri2ycVJWZdm2tM8ZinFqK6ywUzZ6jHoTpEiGgBOxTLrKXTZmHakjo7hnU"
+}
+
