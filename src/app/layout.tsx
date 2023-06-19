@@ -18,34 +18,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>{children}</body>
       <Script src="https://s3.amazonaws.com/widgets.addi.com/bundle.min.js"></Script>
-      <Script
-        data-name="vtexAddiWidget"
-        data-id="example"
-        data-ally-slug="example-ecommerce"
-        data-element-reference=".content_plan"
-        src="https://s3.amazonaws.com/statics.addi.com/vtex/js/vtex-co-widget-wrapper.bundle.min.js"
-        widget-border-color="#565656"
-        widget-border-radius="4px"
-        widget-font-color="#787878"
-        widget-font-family="'Roboto', sans-serif"
-        widget-font-sice="14px"
-        widget-badge-background-color="black"
-        widget-info-background-color="black"
-        widget-margin="0"
-        widget-addi-icon-type="filled"
-        widget-addi-icon-size="40px"
-        modal-background-color="white"
-        modal-font-color="#787878"
-        modal-price-color="#00377D"
-        modal-badge-background-color="black"
-        modal-badge-border-radius="20px"
-        modal-badge-font-color="white"
-        modal-card-color="#FAFAFA"
-        modal-button-border-color="#00C8FF"
-        modal-button-border-radius="20px"
-        modal-button-background-color="white"
-        modal-button-font-color="#00C8FF"
-      ></Script>
     </html>
   );
 }

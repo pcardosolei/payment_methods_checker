@@ -42,9 +42,9 @@ export default function Home() {
     fetch(`${ADDI_AUTHENTICATION_TEST_URL}/oauth/token`, {
       body: JSON.stringify(body),
       method: "POST",
-      headers: {
-        // Authorization: `Beater ${JWT}`,
-      },
+      // headers: {
+      //   Authorization: `Beater ${JWT}`,
+      // },
     })
       .then((response) => {
         let info = response.json();
