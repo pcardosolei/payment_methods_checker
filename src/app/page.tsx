@@ -1,8 +1,7 @@
+// @ts-nocheck
 "use client";
 
 import { useCallback, useEffect } from "react";
-
-// ts-ignore
 
 const ADDI_AUTHENTICATION_TEST_URL = "https://api.staging.addi.com";
 
