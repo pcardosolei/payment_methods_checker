@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-nocheck
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
@@ -109,7 +109,7 @@ export default function Home() {
           className="border border-purple-400 p-2"
           onClick={() => createApplication()}
         >
-          Get Authorization
+          Do application
         </button>
       </div>
       <div>
