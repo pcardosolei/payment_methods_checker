@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 // ts-ignore
 
@@ -32,7 +32,7 @@ export default function Home() {
     getAddiAuthorization();
   }, []);
 
-  const createApplication = () => {
+  const createApplication = useCallback(() => {
     // change todo
     const body = {
       grant_type: "client_credentials",
@@ -53,7 +53,11 @@ export default function Home() {
       .catch((err) => {
         // debugger;
       });
-  };
+  }, []);
+
+  useEffect(() => {
+    createApplication();
+  }, [createApplication]);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 text-white dark:bg-white">
       <div>here</div>
