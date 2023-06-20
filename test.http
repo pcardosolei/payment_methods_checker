@@ -1,12 +1,72 @@
-GET http://localhost:3000/api/addi_token HTTP/1.1
-
-POST https://auth.addi-staging.com/oauth/token  HTTP/1.1
+POST https://api.addi-staging.com/v2/online-applications  HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik9FRXhPVVE1UWprMU1EUXpNMFl4UVRVek56UkdRVU14TURZeU5FRTRPRGMxTTBFd09UWkZRdyJ9.eyJpc3MiOiJodHRwczovL2F1dGguYWRkaS1zdGFnaW5nLmNvbS8iLCJzdWIiOiJZN3ZTcjU4YlVVTUM1UjNVYTNrRE9JTmtWMTdmbnF1cEBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RhZ2luZy5hZGRpLmNvbSIsImlhdCI6MTY4NzI3MTI5MCwiZXhwIjoxNjg3MzU3NjkwLCJhenAiOiJZN3ZTcjU4YlVVTUM1UjNVYTNrRE9JTmtWMTdmbnF1cCIsInNjb3BlIjoiY2xpZW50LW1hbmFnZW1lbnQ6Y3JlYXRlLW9ubGluZS1hcHBsaWNhdGlvbiIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.OHmPSqAZ_cLsJpAMH47jft1MAd4JAClePPKahN3FRgUKryOm0Gfx6ob-oOPnw_PYG98hwwgRPopsewviJNXHBDntHmY-B-7zeHOOMiGWewUaymF5y9EMBrugE5u05mP29WZTomk8fir7X7HW585pmSVUvWIxP51XRyYPnFex7Qaz05J9xocK7m63d37GAOHYL5W3k463SetmAQPlsAD2-iNYXQnzrBzENepJfqmHTuTDM7qkx6baQFJYmAGb93qS7RJ_3Jo0n645Kd1emVkycDj3SBM9NTTQBtDCX9r0S-PEybNKBz07ZN8a2cEYZEONs4563fxZOtc4NfPzpajqOQ
 
 {
-    "audience": "https://api.staging.addi.com",
-    "grant_type": "client_credentials",
-    "client_id": "Y7vSr58bUUMC5R3Ua3kDOINkV17fnqup",
-    "client_secret": "-qK9fWnri2ycVJWZdm2tM8ZinFqK6ywUzZ6jHoTpEiGgBOxTLrKXTZmHakjo7hnU"
-}
+      "orderId": "",
+      "totalAmount": "",
+      "shippingAmount": 0,
+      "currency": "COP",
+      "items": [
+        {
+          "sku": "PD-122354",
+          "name": "product name",
+          "quantity": "5",
+          "unitPrice": 9950,
+          "tax": 9950,
+          "pictureUrl": "https://picture.example.com/?img=test",
+          "category": "technology",
+          "brand": "adidas",
+        },
+      ],
+      "suppliers": [
+        {
+          "supplierName": "Mundial",
+          "slugName": "mundial-pamii",
+          "shippingAmount": "1000",
+          "totalAmount": "25200",
+          "fee": "200",
+          "tax": "9950",
+          "items": [
+            {
+        "sku": "PD-122354",
+          "name": "product name",
+          "quantity": "5",
+          "unitPrice": 9950,
+          "tax": 9950,
+          "pictureUrl": "https://picture.example.com/?img=test",
+          "category": "technology",
+          "brand": "adidas",
+            },
+          ],
+        },
+      ],
+      "client": {
+        "idType": "CC",
+        "idNumber": "354125896",
+        "firstName": "marcela griselda",
+        "lastName": "Lopez Lopez",
+        "email": "addi-client@online.com",
+        "cellphone": "3211236584",
+        "cellphoneCountryCode": "+57",
+        "address": {
+          "lineOne": "cr 48 156 25 25",
+          "city": "Bogotá D.C",
+          "country": "CO",
+        },
+      },
+      "allyUrlRedirection": {
+        "logoUrl":
+          "https://st4.depositphotos.com/6375600/27351/i/950/depositphotos_273512584-stock-photo-watercolor-painting-of-a-white.jpg",
+        "useCallbackUrl": "https://app-two-rho.vercel.app/api/addi/callback",
+        "redirectionUrl": "https://app-two-rho.vercel.app/checkout",
+      },
+      // optional
+      // totalTaxesAmount: 0,
+      // shippingAddress: {},
+      // billingAddress: {},
+      // pickUpAddress: {},
+      // geoLocation: {}
+    }
+
 
