@@ -1,11 +1,8 @@
 // @ts-nocheck
 "use client";
 import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
-
-const ADDI_AUTHENTICATION_TEST_URL = "https://auth.addi-staging.com";
-
-const ADDI_API_TEST_URL = "https://api.addi-staging.com";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 type AddiToken = {
   access_token: string;
@@ -24,50 +21,17 @@ export default function Home() {
   const [price, setPrice] = useState<number>(0);
 
   const getAddiAuthorization = async () => {
-    const response = await axios.get("/api/addi_token");
-    debugger;
+    const response = await axios.get("/api/addi/token");
+    setJwt({ ...response?.data?.data } as unknown as AddiToken);
   };
 
-  const createApplication = useCallback(() => {
-    // change todo
-    const body = {
-      orderId: "",
+  const createApplication = async () => {
+    const response = await axios.post("/api/addi/application", {
       totalAmount: price,
-      shippingAmount: 0,
-      currency: "COP", // only supported COP
-      items: [],
-      suppliers: [],
-      client: {},
-      allyUrlRedirection: {
-        logoUrl: "",
-        useCallbackUrl: "",
-        redirectionUrl: "",
-      },
-      // optional
-      // totalTaxesAmount: 0,
-      // shippingAddress: {},
-      // billingAddress: {},
-      // pickUpAddress: {},
-      // geoLocation: {}
-    };
-
-    if (!jwt || !jwt.access_token) return;
-
-    fetch(`${ADDI_AUTHENTICATION_TEST_URL}/v2/online-applications`, {
-      body: JSON.stringify(body),
-      method: "POST",
-      headers: {
-        Authorization: `Bearer: ${jwt}`,
-      },
-    })
-      .then((response) => {
-        let info = response.json();
-        // debugger;
-      })
-      .catch((err) => {
-        // debugger;
-      });
-  }, [jwt]);
+      orderId: uuidv4(),
+    });
+  };
+  console.log(jwt);
 
   return (
     <main className="flex min-h-screen flex-col items-center gap-5 p-24 dark:text-white text-black">

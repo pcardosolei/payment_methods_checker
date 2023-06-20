@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import { NextResponse } from "next/server";
 
@@ -12,14 +11,14 @@ export async function GET() {
     client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET || "",
   };
 
-  axios
-    .post(`${ADDI_AUTHENTICATION_TEST_URL}/oauth/token`, body)
-    .then(async (response) => {
-      debugger;
-      return NextResponse.json({ response });
-    })
-    .catch((err) => {
-      console.log(err);
-      return NextResponse.json({ error: err });
-    });
+  try {
+    const response = await axios.post(
+      `${ADDI_AUTHENTICATION_TEST_URL}/oauth/token`,
+      body
+    );
+
+    return NextResponse.json({ data: response.data });
+  } catch (err) {
+    return NextResponse.json({ error: err });
+  }
 }
