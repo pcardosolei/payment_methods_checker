@@ -6,6 +6,9 @@ export async function POST(request: Request) {
   const body = await request.json();
   await supabaseAdmin
     .from("callbacks")
+    .insert({ id: uuidv4(), metadata: { message: "received" } });
+  await supabaseAdmin
+    .from("callbacks")
     .insert({ id: uuidv4(), metadata: body });
 
   return NextResponse.json({ message: "OK" });
