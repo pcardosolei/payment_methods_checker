@@ -1,3 +1,12 @@
+import { supabaseAdmin } from "../../../../../lib/supabaseClient";
+import { v4 as uuidv4 } from "uuid";
+import { NextResponse } from "next/server";
+
 export async function POST(request: Request) {
-  const res = await request.json();
+  const body = await request.json();
+  await supabaseAdmin
+    .from("callbacks")
+    .insert({ id: uuidv4(), metadata: body });
+
+  return NextResponse.json({ message: "OK" });
 }

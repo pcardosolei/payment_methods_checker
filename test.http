@@ -1,47 +1,49 @@
-POST https://api.addi-staging.com/v2/online-applications  HTTP/1.1
+
+
+POST https://auth.addi-staging.com/oauth/token  HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik9FRXhPVVE1UWprMU1EUXpNMFl4UVRVek56UkdRVU14TURZeU5FRTRPRGMxTTBFd09UWkZRdyJ9.eyJpc3MiOiJodHRwczovL2F1dGguYWRkaS1zdGFnaW5nLmNvbS8iLCJzdWIiOiJZN3ZTcjU4YlVVTUM1UjNVYTNrRE9JTmtWMTdmbnF1cEBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RhZ2luZy5hZGRpLmNvbSIsImlhdCI6MTY4NzI3MTI5MCwiZXhwIjoxNjg3MzU3NjkwLCJhenAiOiJZN3ZTcjU4YlVVTUM1UjNVYTNrRE9JTmtWMTdmbnF1cCIsInNjb3BlIjoiY2xpZW50LW1hbmFnZW1lbnQ6Y3JlYXRlLW9ubGluZS1hcHBsaWNhdGlvbiIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.OHmPSqAZ_cLsJpAMH47jft1MAd4JAClePPKahN3FRgUKryOm0Gfx6ob-oOPnw_PYG98hwwgRPopsewviJNXHBDntHmY-B-7zeHOOMiGWewUaymF5y9EMBrugE5u05mP29WZTomk8fir7X7HW585pmSVUvWIxP51XRyYPnFex7Qaz05J9xocK7m63d37GAOHYL5W3k463SetmAQPlsAD2-iNYXQnzrBzENepJfqmHTuTDM7qkx6baQFJYmAGb93qS7RJ_3Jo0n645Kd1emVkycDj3SBM9NTTQBtDCX9r0S-PEybNKBz07ZN8a2cEYZEONs4563fxZOtc4NfPzpajqOQ
 
 {
-      "orderId": "",
-      "totalAmount": "",
-      "shippingAmount": 0,
-      "currency": "COP",
-      "items": [
+    "audience": "https://api.staging.addi.com",
+    "grant_type": "client_credentials",
+    "client_id": "Y7vSr58bUUMC5R3Ua3kDOINkV17fnqup",
+    "client_secret": "-qK9fWnri2ycVJWZdm2tM8ZinFqK6ywUzZ6jHoTpEiGgBOxTLrKXTZmHakjo7hnU"    
+}
+
+
+
+#   "client_id": "Y7vSr58bUUMC5R3Ua3kDOINkV17fnqup",
+#   "client_secret": "-qK9fWnri2ycVJWZdm2tM8ZinFqK6ywUzZ6jHoTpEiGgBOxTLrKXTZmHakjo7hnU"
+
+###
+
+POST https://api.addi-staging.com/v1/online-applications
+Content-Type: application/json
+Accept: */*
+Connection: keep-alive
+Accept-Encoding: gzip, deflate, br
+Cookie: addiauth=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI1MGVkZDFhNC02ODhlLTQyZjgtYTE5Yi1hNDU0NmJjNjZiZTciLCJlbWFpbCI6IiIsInJvbGUiOiJTVE9SRV9PTkxJTkVfQVBQIiwiYWxseUlkIjoianVtcHNlbGxlci1lY29tbWVyY2UiLCJzdG9yZUlkIjoianVtcHNlbGxlci1lYyIsInN0b3JlVXNlck5hbWUiOm51bGwsInBlcm1pc3Npb25zIjpbImNsaWVudC1hY2NlcHRhbmNlczpzZW5kLXByaXZhY3ktcG9saWN5LW5vdGlmaWNhdGlvbiIsImNsaWVudC1hY2NlcHRhbmNlczpzZW5kLWxvYW4tYWNjZXB0YW5jZS1ub3RpZmljYXRpb24iLCJjbGllbnQtYWNjZXB0YW5jZXM6YWNjZXB0LWxvYW4iLCJjbGllbnQtYWNjZXB0YW5jZXM6YWNjZXB0LXByaXZhY3ktcG9saWN5IiwiY2xpZW50LW1hbmFnZW1lbnQ6cmVhZC1sb2FuLWFwcGxpY2F0aW9uIiwidW5kZXJ3cml0aW5nOnJlYWQtcXVlc3Rpb25uYWlyZSIsInVuZGVyd3JpdGluZzpzZW5kLXF1ZXN0aW9ubmFpcmUiLCJ1bmRlcndyaXRpbmc6cmVhZC1sb2FuLXByb3Bvc2FscyIsImNsaWVudC1tYW5hZ2VtZW50OnJlYWQtY2xpZW50IiwiYWxsaWVzOnJlYWQtYWxseSIsImFsbGllczpyZWFkLXN0b3JlLXVzZXIiLCJ1bmRlcndyaXRpbmc6Y3JlYXRlLWlkZW50aXR5LXZlcmlmaWNhdGlvbiIsInVuZGVyd3JpdGluZzpyZWFkLWlkZW50aXR5LXZlcmlmaWNhdGlvbiIsImFsbGllczpyZWFkLWFsbHktY29uZmlnIiwiY2xpZW50LW1hbmFnZW1lbnQ6cmVhZC1wcm9zcGVjdCIsImNsaWVudC1tYW5hZ2VtZW50OnJlYWQtb25saW5lLWFwcGxpY2F0aW9uIiwiY2xpZW50LW1hbmFnZW1lbnQ6dXBkYXRlLW9ubGluZS1hcHBsaWNhdGlvbiIsImlkZW50aXR5LW1hbmFnZW1lbnQ6dGltZS1leHBpcmF0aW9uLXRva2VuIiwidW5kZXJ3cml0aW5nOmNyZWF0ZS1wcm9zcGVjdC12YWxpZGF0aW9uIiwiY2xpZW50LW1hbmFnZW1lbnQ6Y3JlYXRlLXBheW1lbnQtbGluayIsImlkZW50aXR5LW1hbmFnZW1lbnQ6Z2V0LWFkZGktdG9rZW4tY2xhaW1zIiwiaWRlbnRpdHktdmVyaWZpY2F0aW9uOnJlYWQtaWRlbnRpdHktdmVyaWZpY2F0aW9uIiwiY2xpZW50LW1hbmFnZW1lbnQ6cmVhZC1jbGllbnQtbG9hbiIsImNsaWVudC1tYW5hZ2VtZW50OnJlY292ZXItYXBwbGljYXRpb24iLCJjbGllbnQtbWFuYWdlbWVudDpyZXN0YXJ0LWFwcGxpY2F0aW9uIiwiaWRlbnRpdHktdmVyaWZpY2F0aW9uOnNlbmQtaWRlbnRpdHktdmVyaWZpY2F0aW9uLXRvLWNvbnRpbmdlbmN5IiwiY2xpZW50LW1hbmFnZW1lbnQ6dXBkYXRlLWFwcGxpY2F0aW9uIiwib3JpZ2luYXRpb25zOmNyZWF0ZS1wcm9zcGVjdC1hZGRpdGlvbmFsLXBlcnNvbmFsLWluZm9ybWF0aW9uLXVwZGF0ZSIsInVuZGVyd3JpdGluZzpyZWFkLWlhLWFzc2Vzc21lbnRzIiwib3JpZ2luYXRpb25zOmV4ZWN1dGUtc3RhZ2UiLCJjaGFubmVsczpyZWFkLW9yZGVyLWNhbGxiYWNrIiwiY2hhbm5lbHM6Y3JlYXRlLWFwcGxpY2F0aW9uLXJlc3RhcnQiLCJjbGllbnQtc3RhdHVzOmNyZWF0ZS1wcm9zcGVjdC12YWxpZGF0aW9uIiwiY2xpZW50LXBheW1lbnRzOmNyZWF0ZS1jbGllbnQtY2FyZCIsImNsaWVudC1wYXltZW50czpyZWFkLXBpeCIsImNoYW5uZWxzOmUtY29tbWVyY2U6Y3JlYXRlLWNoZWNrb3V0IiwiaWRlbnRpdHktcGhvdG9zOnJlYWQtaWRlbnRpdHktcGhvdG8iLCJpZGVudGl0eS1waG90b3M6c2F2ZS1pZGVudGl0eS1waG90byIsImNsaWVudC1wYXltZW50czpnZXQtY2xpZW50LWNhcmRzIiwiY2xpZW50LXBheW1lbnRzOmRlbGV0ZS1jbGllbnQtY2FyZCIsImlkdi10aGlyZC1wYXJ0eTpzYXZlLWlkdi10aGlyZC1wYXJ0eS1waG90byIsImlkdi10aGlyZC1wYXJ0eTpza2lwLWlkdi10aGlyZC1wYXJ0eSIsImlkdi10aGlyZC1wYXJ0eTpnZXQtaWR2LXRoaXJkLXBhcnR5Il0sImlhdCI6MTY4NzY5NjEwMywiZXhwIjoxNjg3Njk3MzAzLCJpc3MiOiJodHRwczovL2JhY2tlbmQuYWRkaS5jb20vIiwic3ViIjoiWTd2U3I1OGJVVU1DNVIzVWEza0RPSU5rVjE3Zm5xdXAifQ.5jOHB1sMOdYdNO1WsE9d1OscatKcAuh7_Ign6nLucyE
+Authorization: Bearer: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik9FRXhPVVE1UWprMU1EUXpNMFl4UVRVek56UkdRVU14TURZeU5FRTRPRGMxTTBFd09UWkZRdyJ9.eyJpc3MiOiJodHRwczovL2F1dGguYWRkaS1zdGFnaW5nLmNvbS8iLCJzdWIiOiJZN3ZTcjU4YlVVTUM1UjNVYTNrRE9JTmtWMTdmbnF1cEBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RhZ2luZy5hZGRpLmNvbSIsImlhdCI6MTY4NzY5NjA4OSwiZXhwIjoxNjg3NzgyNDg5LCJhenAiOiJZN3ZTcjU4YlVVTUM1UjNVYTNrRE9JTmtWMTdmbnF1cCIsInNjb3BlIjoiY2xpZW50LW1hbmFnZW1lbnQ6Y3JlYXRlLW9ubGluZS1hcHBsaWNhdGlvbiIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.k30KewWp351nwjS0yyrOdV8aDWdEUPc2-NT6x8eR7YLf9jNcRSnKxH4kTBmCVl9foMqNti0ulIzW37qZA3seMI9rFOjYOuBUe36EcDPdL0jvF3-c3nBA0vs5_frxHRVRRjbEUkKlP36kgRR-7njUlT_VQnH0gGVU7297zFpJ4l_jtX6m3RY4SagwVFRUohHt4K-1JfJ79yC6elCUoRdfl4HDpMVvSzAys9B3NioDZQnFhMeY0FgirQZSYpRZh9tZcMmzHAMujYHWwLAvTOj62vtFn5VtXQk6a0QHPi-HTUFq6hJlbyfk3gTccgeFZVflWx0LThX4ZMkbiplKbcqebw
+
+{
+    "orderId": "8ujf387a5-ecc6-4324-8b78-ac27c952c737",
+    "totalAmount": "255000.0",
+    "shippingAmount": "50000.0",
+    "totalTaxesAmount": "100000.0",
+    "currency": "COP",
+    "items": [
         {
-          "sku": "PD-122354",
-          "name": "product name",
-          "quantity": "5",
-          "unitPrice": 9950,
-          "tax": 9950,
-          "pictureUrl": "https://picture.example.com/?img=test",
-          "category": "technology",
-          "brand": "adidas",
-        },
-      ],
-      "suppliers": [
-        {
-          "supplierName": "Mundial",
-          "slugName": "mundial-pamii",
-          "shippingAmount": "1000",
-          "totalAmount": "25200",
-          "fee": "200",
-          "tax": "9950",
-          "items": [
-            {
-        "sku": "PD-122354",
-          "name": "product name",
-          "quantity": "5",
-          "unitPrice": 9950,
-          "tax": 9950,
-          "pictureUrl": "https://picture.example.com/?img=test",
-          "category": "technology",
-          "brand": "adidas",
-            },
-          ],
-        },
-      ],
-      "client": {
+            "sku": "PD-122354",
+            "name": "product name",
+            "quantity": "5",
+            "unitPrice": "9950",
+            "tax": "9950",
+            "pictureUrl": "https://picture.example.com/?img=test",
+            "category": "technology",
+            "brand": "adidas"
+        }
+    ],
+    "client": {
         "idType": "CC",
         "idNumber": "354125896",
         "firstName": "marcela griselda",
@@ -50,23 +52,14 @@ Authorization: Bearer: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik9FRXhPVVE1U
         "cellphone": "3211236584",
         "cellphoneCountryCode": "+57",
         "address": {
-          "lineOne": "cr 48 156 25 25",
-          "city": "Bogotá D.C",
-          "country": "CO",
-        },
-      },
-      "allyUrlRedirection": {
-        "logoUrl":
-          "https://st4.depositphotos.com/6375600/27351/i/950/depositphotos_273512584-stock-photo-watercolor-painting-of-a-white.jpg",
-        "useCallbackUrl": "https://app-two-rho.vercel.app/api/addi/callback",
-        "redirectionUrl": "https://app-two-rho.vercel.app/checkout",
-      },
-      // optional
-      // totalTaxesAmount: 0,
-      // shippingAddress: {},
-      // billingAddress: {},
-      // pickUpAddress: {},
-      // geoLocation: {}
+            "lineOne": "cr 48 156 25 25",
+            "city": "Bogotá D.C",
+            "country": "CO"
+        }
+    },
+    "allyUrlRedirection": {
+        "logoUrl": "https://picture.example.com/?img=test",
+        "callbackUrl": "https://ally.callback.url/callback/example",
+        "redirectionUrl": "https://redirection.example.com/"
     }
-
-
+}

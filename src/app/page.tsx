@@ -1,6 +1,7 @@
 // @ts-nocheck
 "use client";
 import axios from "axios";
+import Router, { useRouter } from "next/navigation";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -12,26 +13,18 @@ type AddiToken = {
 };
 
 export default function Home() {
-  const [jwt, setJwt] = useState<AddiToken>({
-    access_token: "",
-    scope: "",
-    expires_in: 0,
-    token_type: "",
-  });
+  const router = useRouter();
   const [price, setPrice] = useState<number>(0);
-
-  const getAddiAuthorization = async () => {
-    const response = await axios.get("/api/addi/token");
-    setJwt({ ...response?.data?.data } as unknown as AddiToken);
-  };
 
   const createApplication = async () => {
     const response = await axios.post("/api/addi/application", {
       totalAmount: price,
       orderId: uuidv4(),
     });
+
+    debugger;
+    router.push(response.data?.location);
   };
-  console.log(jwt);
 
   return (
     <main className="flex min-h-screen flex-col items-center gap-5 p-24 dark:text-white text-black">
@@ -42,17 +35,7 @@ export default function Home() {
           onChange={(e) => setPrice(Number(e.target.value))}
         ></input>
       </div>
-      <div className="flex flex-col gap-1">
-        <div>JWT</div>
-        <p>{jwt.access_token || ""}</p>
-      </div>
       <div className="flex gap-5">
-        <button
-          className="border border-purple-400 p-2"
-          onClick={() => getAddiAuthorization()}
-        >
-          Get Authorization
-        </button>
         <button
           className="border border-purple-400 p-2"
           onClick={() => createApplication()}
