@@ -87,9 +87,10 @@ export async function POST(request: Request, res: NextApiResponse) {
         },
       },
       allyUrlRedirection: {
-        logoUrl: "https://picture.example.com/?img=test",
-        callbackUrl: "https://ally.callback.url/callback/example",
-        redirectionUrl: "https://redirection.example.com/",
+        callbackUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/api/addi/callback`,
+        redirectionUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout`,
+        logoUrl:
+          "https://st4.depositphotos.com/6375600/27351/i/950/depositphotos_273512584-stock-photo-watercolor-painting-of-a-white.jpg",
       },
     };
 
