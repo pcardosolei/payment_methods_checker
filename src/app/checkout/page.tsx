@@ -1,5 +1,5 @@
 const CheckoutPage = () => {
-  return <div>Adding work here</div>;
+  return <div>MOCK CHECKOUT HERE</div>;
 };
 
 export default CheckoutPage;
