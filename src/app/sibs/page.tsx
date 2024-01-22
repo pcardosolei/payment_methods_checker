@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 
 import { SibsFormData, SibsPaymentUrl } from "./config";
 import { Button, Checkbox, FormControlLabel, TextField } from "@mui/material";
+import { useState } from "react";
 
 const SibsPage = () => {
+  const [transactionId, setTransactionId] = useState<string>();
   const {
     register,
     handleSubmit,
@@ -16,6 +18,7 @@ const SibsPage = () => {
   const callSibsCreateTransactionId = async (formData: SibsFormData) => {
     const response = await fetch(SibsPaymentUrl, {
       method: "POST",
+      mode: "no-cors",
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_SIBS_TOKEN}`,
         "X-IBM-Client-Id": process.env.NEXT_PUBLIC_SIBS_CLIENT_ID || "",
