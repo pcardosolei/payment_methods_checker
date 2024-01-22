@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { SibsFormData, SibsPaymentUrl } from "./config";
 import { Button, Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { useState } from "react";
+import Script from "next/script";
 
 const SibsPage = () => {
   const [transactionId, setTransactionId] = useState<string>();
@@ -18,7 +19,6 @@ const SibsPage = () => {
   const callSibsCreateTransactionId = async (formData: SibsFormData) => {
     const response = await fetch(SibsPaymentUrl, {
       method: "POST",
-      mode: "no-cors",
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_SIBS_TOKEN}`,
         "X-IBM-Client-Id": process.env.NEXT_PUBLIC_SIBS_CLIENT_ID || "",
@@ -93,6 +93,13 @@ const SibsPage = () => {
         </div>
         <Button type="submit">Testar</Button>
       </form>
+      <div className="my-5">
+        {transactionId && (
+          <Script
+            src={`https://spg.qly.site1.sibs.pt/assets/js/widget.js?id=${transactionId}`}
+          ></Script>
+        )}
+      </div>
     </main>
   );
 };
