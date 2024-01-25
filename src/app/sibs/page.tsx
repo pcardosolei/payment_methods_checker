@@ -6,6 +6,7 @@ import { SibsPaymentUrl } from "./config";
 import { Button, Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { useState } from "react";
 import Script from "next/script";
+import ResponseText from "../../../components/ResponseText/ResponseText";
 
 /* FOR FIRST PHASE */
 type PaymentTypes = "CARD" | "MBWAY" | "REFERENCE";
@@ -132,6 +133,28 @@ const SibsPage = () => {
     setServerCardResponse({ ...data });
   };
 
+  const sendReferenceTransaction = async () => {
+    if (!transaction || !transaction.transactionID)
+      return alert("missing transactionID");
+
+    const { transactionID, transactionSignature } = transaction;
+
+    const response = await fetch(
+      `${SibsPaymentUrl}/${transactionID}/service-reference/generate`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Digest ${transactionSignature}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+      }
+    );
+
+    const data = await response.json();
+    setServerCardResponse({ ...data });
+  };
+
   return (
     <main className="m-5 flex flex-col gap-3">
       <form onSubmit={handleSubmit(callSibsCreateTransactionId)}>
@@ -139,12 +162,12 @@ const SibsPage = () => {
           Primeiro Passo: Request Transaction
         </Button>
       </form>
-      <div>
-        <h2>Response request transaction:</h2>
-        <pre className="break-all w-full bg-gray-400 text-white">
-          {JSON.stringify(transaction, undefined, 2)}
-        </pre>
-      </div>
+
+      <ResponseText
+        title="Response request transaction:"
+        text={transaction}
+        isOpen={false}
+      />
       <div className="my-5 lg:mx-auto lg:w-3/4 mx-10 w-full">
         {transaction && (
           <div>
@@ -159,7 +182,7 @@ const SibsPage = () => {
                 paymentMethodList: transaction.paymentMethodList,
                 amount: transaction.amount,
                 language: "en",
-                redirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/checkout`,
+                redirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/checkout/sibs`,
                 customerData: null,
               })}
             />
@@ -178,17 +201,24 @@ const SibsPage = () => {
             >
               Card
             </Button>
+
+            <Button
+              className="bg-green-100"
+              type="button"
+              onClick={sendReferenceTransaction}
+            >
+              Referencia Multibanco
+            </Button>
           </div>
         </div>
       )}
 
       {serverCardResponse && (
-        <div>
-          <h2>Server to server card:</h2>
-          <pre className="break-all w-full bg-gray-400 text-white">
-            {JSON.stringify(serverCardResponse, undefined, 2)}
-          </pre>
-        </div>
+        <ResponseText
+          title="Server to server card:"
+          text={serverCardResponse}
+          isOpen={false}
+        />
       )}
     </main>
   );
