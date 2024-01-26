@@ -182,7 +182,7 @@ const SibsPage = () => {
                 paymentMethodList: transaction.paymentMethodList,
                 amount: transaction.amount,
                 language: "en",
-                redirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/checkout/sibs`,
+                redirectUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/sibs`,
                 customerData: null,
               })}
             />
