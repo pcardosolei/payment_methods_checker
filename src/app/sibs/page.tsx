@@ -54,6 +54,41 @@ const SibsPage = () => {
 
   /* Prepare the SIBS checkout - first step needed*/
   const callSibsCreateTransactionId = async (formData: unknown) => {
+    let today = new Date();
+    let daysFromNow = today.setDate(today.getDate() + 2);
+
+    const body = JSON.stringify({
+      merchant: {
+        terminalId: 56795,
+        channel: "web",
+        merchantTransactionId: "Order Id: a0fomfxd2q",
+      },
+      transaction: {
+        transactionTimestamp: new Date().toISOString(),
+        description: "Transaction test by SIBS",
+        moto: false,
+        paymentType: "PURS",
+        amount: {
+          value: 5.5,
+          currency: "EUR",
+        },
+        paymentMethod: ["CARD", "MBWAY", "REFERENCE"],
+        paymentReference: {
+          initialDatetime: new Date().toISOString(),
+          finalDatetime: new Date(daysFromNow).toISOString(),
+          maxAmount: {
+            value: 5.5,
+            currency: "EUR",
+          },
+          minAmount: {
+            value: 5.5,
+            currency: "EUR",
+          },
+          entity: "24000",
+        },
+      },
+    });
+
     const response = await fetch(SibsPaymentUrl, {
       method: "POST",
       headers: {
@@ -61,37 +96,7 @@ const SibsPage = () => {
         "X-IBM-Client-Id": process.env.NEXT_PUBLIC_SIBS_CLIENT_ID || "",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        merchant: {
-          terminalId: 56795,
-          channel: "web",
-          merchantTransactionId: "Order Id: a0fomfxd2q",
-        },
-        transaction: {
-          transactionTimestamp: "2024-01-19T11:00:41.080Z",
-          description: "Transaction test by SIBS",
-          moto: false,
-          paymentType: "PURS",
-          amount: {
-            value: 5.5,
-            currency: "EUR",
-          },
-          paymentMethod: ["CARD", "MBWAY", "REFERENCE"],
-          paymentReference: {
-            initialDatetime: "2024-01-19T11:00:41.080Z",
-            finalDatetime: "2024-01-21T11:00:41.080Z",
-            maxAmount: {
-              value: 5.5,
-              currency: "EUR",
-            },
-            minAmount: {
-              value: 5.5,
-              currency: "EUR",
-            },
-            entity: "24000",
-          },
-        },
-      }),
+      body,
     });
 
     const data = await response.json();
